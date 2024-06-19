@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <title>Marketing Event Page</title>
@@ -8,25 +8,114 @@
     <meta property="twitter:card" content="summary_large_image" />
 
     <style data-tag="reset-style-sheet">
-      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
-    </style>
-    <style data-tag="default-style-sheet">
       html {
-        font-family: IBM Plex Sans Condensed;
-        font-size: 16px;
+          line-height: 1.15;
       }
 
       body {
-        font-weight: 400;
-        font-style:normal;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: normal;
-        line-height: 1.5;
-        color: var(--dl-color-scheme-darkblue);
-        background-color: var(--dl-color-scheme-lightgrey);
+          margin: 0;
+      }
 
-        fill: var(--dl-color-scheme-darkblue);
+      * {
+          box-sizing: border-box;
+          border-width: 0;
+          border-style: solid;
+      }
+
+      p,
+      li,
+      ul,
+      pre,
+      div,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      figure,
+      blockquote,
+      figcaption {
+          margin: 0;
+          padding: 0;
+      }
+
+      button {
+          background-color: transparent;
+      }
+
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+          font-family: inherit;
+          font-size: 100%;
+          line-height: 1.15;
+          margin: 0;
+      }
+
+      button,
+      select {
+          text-transform: none;
+      }
+
+      button,
+      [type="button"],
+      [type="reset"],
+      [type="submit"] {
+          -webkit-appearance: button;
+      }
+
+      button::-moz-focus-inner,
+      [type="button"]::-moz-focus-inner,
+      [type="reset"]::-moz-focus-inner,
+      [type="submit"]::-moz-focus-inner {
+          border-style: none;
+          padding: 0;
+      }
+
+      button:-moz-focus,
+      [type="button"]:-moz-focus,
+      [type="reset"]:-moz-focus,
+      [type="submit"]:-moz-focus {
+          outline: 1px dotted ButtonText;
+      }
+
+      a {
+          color: inherit;
+          text-decoration: inherit;
+      }
+
+      input {
+          padding: 2px 4px;
+      }
+
+      img {
+          display: block;
+      }
+
+      html {
+          scroll-behavior: smooth
+      }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+          font-family: IBM Plex Sans Condensed;
+          font-size: 16px;
+      }
+
+      body {
+          font-weight: 400;
+          font-style: normal;
+          text-decoration: none;
+          text-transform: uppercase;
+          letter-spacing: normal;
+          line-height: 1.5;
+          color: var(--dl-color-scheme-darkblue);
+          background-color: var(--dl-color-scheme-lightgrey);
+
+          fill: var(--dl-color-scheme-darkblue);
       }
     </style>
     <link
@@ -43,10 +132,11 @@
       href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
     />
   </head>
+
   <body>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
     <div>
-      <link href="./index.css" rel="stylesheet" />
+      <!-- <link href="./index.css" rel="stylesheet" /> -->
 
       <div class="home-container">
         <header
@@ -56,7 +146,7 @@
           <div class="navigation-max-width">
             <img
               alt="logo"
-              src="public/image-removebg-preview%20(1)1-200h.png"
+              src="{% static 'public/image-removebg-preview%20(1)1-200h.png' %}"
               class="navigation-image"
             />
             <div class="navigation-nav">
@@ -89,7 +179,11 @@
             <div data-role="MobileMenu" class="navigation-mobile-menu">
               <div class="navigation-nav1">
                 <div class="navigation-container">
-                  <img alt="image" src="public/logo-white-1500h.png" />
+                  <img
+                    alt="image"
+                    src="{% static 'public/image-removebg-preview (1)1-1200w.png' %}"
+                    style="width: 150px;height: 80px; margin-left: -35px;"
+                  />
                   <div
                     data-role="CloseMobileMenu"
                     class="navigation-close-mobile-menu"
@@ -408,7 +502,7 @@
                 <div class="numbers-card-numbers-card">
                   <img
                     alt="image"
-                    src="public/message-200h.png"
+                    src="{% static 'public/message-200h.png' %}"
                     class="numbers-card-image"
                   />
                   <span class="numbers-card-number"><span>2,148</span></span>
@@ -417,7 +511,7 @@
                 <div class="numbers-card-numbers-card">
                   <img
                     alt="image"
-                    src="public/interface%20time%20reset-200h.png"
+                    src="{% static 'public/interface%20time%20reset-200h.png' %}"
                     class="numbers-card-image"
                   />
                   <span class="numbers-card-number"><span>12</span></span>
@@ -426,7 +520,7 @@
                 <div class="numbers-card-numbers-card">
                   <img
                     alt="image"
-                    src="public/interface%20calendar%20favorite-200h.png"
+                    src="{% static 'public/interface%20calendar%20favorite-200h.png' %}"
                     class="numbers-card-image"
                   />
                   <span class="numbers-card-number"><span>64</span></span>
@@ -437,7 +531,7 @@
                 <div class="numbers-card-numbers-card">
                   <img
                     alt="image"
-                    src="public/shopping%20bag%20suit%20case-200h.png"
+                    src="{% static 'public/shopping%20bag%20suit%20case-200h.png' %}"
                     class="numbers-card-image"
                   />
                   <span class="numbers-card-number"><span>15,070</span></span>
@@ -446,7 +540,7 @@
                 <div class="numbers-card-numbers-card">
                   <img
                     alt="image"
-                    src="public/travel%20map%20location%20pin-200h.png"
+                    src="{% static 'public/travel%20map%20location%20pin-200h.png' %}"
                     class="numbers-card-image"
                   />
                   <span class="numbers-card-number"><span>14</span></span>
@@ -455,7 +549,7 @@
                 <div class="numbers-card-numbers-card">
                   <img
                     alt="image"
-                    src="public/computer%20voice%20mail-200h.png"
+                    src="{% static 'public/computer%20voice%20mail-200h.png' %}"
                     class="numbers-card-image"
                   />
                   <span class="numbers-card-number"><span>1,071</span></span>
@@ -555,8 +649,9 @@
               <div class="footer-left-side">
                 <img
                   alt="image"
-                  src="public/image-removebg-preview%20(1)1-1200w.png"
+                  src="{% static 'public/image-removebg-preview%20(1)1-1200w.png' %}"
                   class="footer-image"
+                  style="width: 150px; height: 80px;"
                 />
                 <span class="footer-text4">
                   Register for the most insightful marketing conference of
@@ -600,6 +695,7 @@
             </div>
           </div>
         </footer>
+        <div class="home-container6"></div>
       </div>
     </div>
     <script
@@ -608,89 +704,89 @@
     ></script>
     <script defer="">
       window.onload = () => {
-        const runAllScripts = () => {
-          initializeAllSliders();
-        };
-
-        const listenForUrlChanges = () => {
-          let url = location.href;
-          document.body.addEventListener(
-            "click",
-            () => {
-              requestAnimationFrame(() => {
-                if (url !== location.href) {
-                  runAllScripts();
-                  url = location.href;
-                }
-              });
-            },
-            true
-          );
-        };
-
-        const initializeAllSliders = () => {
-          const allSliders = document.querySelectorAll('[data-type="slider"]');
-          allSliders.forEach((slider) => {
-            initializeSlider(slider);
-          });
-        };
-
-        const initializeSlider = (slider) => {
-          const slides = slider.querySelectorAll('[data-type="slide"]');
-          const middle = Math.ceil(slides.length / 2);
-          let currentSlide = middle;
-
-          const nextSlideBtns = document.querySelectorAll(
-            '[data-action="nextSlide"]'
-          );
-          const previousSlideBtns = document.querySelectorAll(
-            '[data-action="previousSlide"]'
-          );
-
-          const changeSlide = (slideIndex, action) => {
-            currentSlide = slideIndex;
-
-            switch (action) {
-              case "next":
-                slideIndex === slides.length
-                  ? (currentSlide = 1)
-                  : currentSlide++;
-                break;
-              case "previous":
-                slideIndex === 1
-                  ? (currentSlide = slides.length)
-                  : currentSlide--;
-            }
-
-            const slide = slides[0];
-            if (!slide) {
-              console.error("No slides present");
-              return;
-            }
-            const style = window.getComputedStyle(slide);
-            slideWidth =
-              parseInt(style.width) +
-              parseInt(style.marginLeft) +
-              parseInt(style.marginRight);
-            const transformValue = -slideWidth * (currentSlide - middle);
-
-            slider.style.transform = `translateX(${transformValue}px)`;
+          const runAllScripts = () => {
+              initializeAllSliders();
           };
 
-          previousSlideBtns.forEach((btn) => {
-            btn.addEventListener("click", () =>
-              changeSlide(currentSlide, "previous")
-            );
-          });
+          const listenForUrlChanges = () => {
+              let url = location.href;
+              document.body.addEventListener(
+                  "click",
+                  () => {
+                      requestAnimationFrame(() => {
+                          if (url !== location.href) {
+                              runAllScripts();
+                              url = location.href;
+                          }
+                      });
+                  },
+                  true
+              );
+          };
 
-          nextSlideBtns.forEach((btn) => {
-            btn.addEventListener("click", () =>
-              changeSlide(currentSlide, "next")
-            );
-          });
-        };
+          const initializeAllSliders = () => {
+              const allSliders = document.querySelectorAll('[data-type="slider"]');
+              allSliders.forEach((slider) => {
+                  initializeSlider(slider);
+              });
+          };
 
-        runAllScripts();
+          const initializeSlider = (slider) => {
+              const slides = slider.querySelectorAll('[data-type="slide"]');
+              const middle = Math.ceil(slides.length / 2);
+              let currentSlide = middle;
+
+              const nextSlideBtns = document.querySelectorAll(
+                  '[data-action="nextSlide"]'
+              );
+              const previousSlideBtns = document.querySelectorAll(
+                  '[data-action="previousSlide"]'
+              );
+
+              const changeSlide = (slideIndex, action) => {
+                  currentSlide = slideIndex;
+
+                  switch (action) {
+                      case "next":
+                          slideIndex === slides.length
+                              ? (currentSlide = 1)
+                              : currentSlide++;
+                          break;
+                      case "previous":
+                          slideIndex === 1
+                              ? (currentSlide = slides.length)
+                              : currentSlide--;
+                  }
+
+                  const slide = slides[0];
+                  if (!slide) {
+                      console.error("No slides present");
+                      return;
+                  }
+                  const style = window.getComputedStyle(slide);
+                  slideWidth =
+                      parseInt(style.width) +
+                      parseInt(style.marginLeft) +
+                      parseInt(style.marginRight);
+                  const transformValue = -slideWidth * (currentSlide - middle);
+
+                  slider.style.transform = `translateX(${transformValue}px)`;
+              };
+
+              previousSlideBtns.forEach((btn) => {
+                  btn.addEventListener("click", () =>
+                      changeSlide(currentSlide, "previous")
+                  );
+              });
+
+              nextSlideBtns.forEach((btn) => {
+                  btn.addEventListener("click", () =>
+                      changeSlide(currentSlide, "next")
+                  );
+              });
+          };
+
+          runAllScripts();
       };
     </script>
   </body>
