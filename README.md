@@ -1,2 +1,1 @@
-# Library
-Library management system using django, which is framework of pyhton.
+pip install django
