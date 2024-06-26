@@ -1,0 +1,37 @@
+<!-- templates/home.html-->
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+Hi {{ user.username }}!
+<form action="{% url 'logout' %}" method="post">
+  {% csrf_token %}
+  <button type="submit">Log Out</button>
+</form>
+
+<p>Here are your Books to Review:</p>
+<ul> 
+  <!-- Iterate over object_list -->
+  {% for object in object_list %} 
+  <!-- Display Objects -->
+  <li>{{ object.title }}</li> 
+  <li>{{ object.details }}</li> 
+  <img src="{{ object.cover }}" style="width: 300px;" alt="">
+  <a href="{% url 'book_details' object.id %}">
+    <button>Review</button>
+  </a>
+  <hr/> 
+  <!-- If object_list is empty  -->
+  {% empty %} 
+  <li>No Books yet.</li> 
+  {% endfor %} 
+</ul>
+  
+{% else %}
+<p>You are not logged in</p>
+<a href="{% url 'login' %}">Log In</a>
+<a href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
+{% endblock %}

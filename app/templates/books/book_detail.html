@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ book.title }}</h1>
+    <img src="/{{ book.cover }}" style="width: 300px;" alt="">
+    <p>Author: {{ book.author }}</p>
+    <p>Genre: {{ book.year }}</p>
+    <p>Description: {{ book.details }}</p>
+
+        
+        <!-- Review Form -->
+        <div class="review-form">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="submit-btn">Submit Review</button>
+            </form>
+        </div>
+
+        <!-- Reviews -->
+        <div class="reviews">
+            <h2>Reviews</h2>
+            {% for review in reviews %}
+                <div class="review">
+                    <p>{{ review.review_text }}</p>
+                    <p>Rating: {{ review.rating }}</p>
+                    <p>By: {{ review.user }}</p>
+                </div>
+            {% endfor %}
+
+{% endblock %}
