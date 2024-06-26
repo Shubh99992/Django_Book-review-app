@@ -27,7 +27,9 @@ class BookDetailView(DetailView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        book = context['book']  # Get the book from the context
         context['form'] = ReviewForm()  # Add the form to the context
+        context['reviews'] = Review.objects.filter(book=book)  # Fetch and add the reviews for the book
         return context
 
     def post(self, request, *args, **kwargs):

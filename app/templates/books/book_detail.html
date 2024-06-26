@@ -6,7 +6,17 @@
     <p>Author: {{ book.author }}</p>
     <p>Genre: {{ book.year }}</p>
     <p>Description: {{ book.details }}</p>
-
+     <!-- Reviews -->
+     <div class="reviews">
+        <h2>Reviews</h2>
+        {% for review in reviews %}
+        <div class="review">
+            <p>rating: {{review.rating}}</p>
+            <strong>{{ review.user.username }}</strong>: {{ review.review_text }}
+            <hr>
+        </div>
+        {% endfor %}
+    </div>
         
         <!-- Review Form -->
         <div class="review-form">
@@ -17,15 +27,6 @@
             </form>
         </div>
 
-        <!-- Reviews -->
-        <div class="reviews">
-            <h2>Reviews</h2>
-            {% for review in reviews %}
-                <div class="review">
-                    <p>{{ review.review_text }}</p>
-                    <p>Rating: {{ review.rating }}</p>
-                    <p>By: {{ review.user }}</p>
-                </div>
-            {% endfor %}
+       
 
 {% endblock %}
