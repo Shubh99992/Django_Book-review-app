@@ -1,1 +1,1 @@
-pip install django
+pip install -r requirement.txt
