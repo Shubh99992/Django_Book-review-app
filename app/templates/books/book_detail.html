@@ -1,32 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{{ book.title }}</h1>
-    <img src="/{{ book.cover }}" style="width: 300px;" alt="">
-    <p>Author: {{ book.author }}</p>
-    <p>Genre: {{ book.year }}</p>
-    <p>Description: {{ book.details }}</p>
-     <!-- Reviews -->
-     <div class="reviews">
-        <h2>Reviews</h2>
-        {% for review in reviews %}
-        <div class="review">
-            <p>rating: {{review.rating}}</p>
-            <strong>{{ review.user.username }}</strong>: {{ review.review_text }}
-            <hr>
+    <div class="book-details">
+        <h1>{{ book.title }}</h1>
+        <div class="book-info">
+            <img src="/{{ book.cover }}" alt="{{ book.title }} Cover" class="book-cover">
+            <div class="details">
+                <p><strong>Author:</strong> {{ book.author }}</p>
+                <p><strong>Genre:</strong> {{ book.genre }}</p>
+                <p><strong>Year:</strong> {{ book.year }}</p>
+                <p><strong>Description:</strong> {{ book.details }}</p>
+            </div>
         </div>
-        {% endfor %}
-    </div>
-        
+
+        <!-- Reviews section -->
+        <div class="reviews">
+            <h2>Reviews</h2>
+            {% for review in reviews %}
+            <div class="review">
+                <p><strong>{{ review.user.username }}</strong>: {{ review.review_text }}</p>
+                <p><strong>Rating:</strong> {{ review.rating }}</p>
+                <hr>
+            </div>
+            {% empty %}
+            <p>No reviews yet.</p>
+            {% endfor %}
+        </div>
+
         <!-- Review Form -->
         <div class="review-form">
+            <h2>Add a Review</h2>
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
+                <div class="rating">
+                    <label><input type="radio" name="rating" value="5"><span class="rating-btn">5</span></label>
+                    <label><input type="radio" name="rating" value="4"><span class="rating-btn">4</span></label>
+                    <label><input type="radio" name="rating" value="3"><span class="rating-btn">3</span></label>
+                    <label><input type="radio" name="rating" value="2"><span class="rating-btn">2</span></label>
+                    <label><input type="radio" name="rating" value="1"><span class="rating-btn">1</span></label>
+                </div>
                 <button type="submit" class="submit-btn">Submit Review</button>
             </form>
         </div>
-
-       
-
+    </div>
 {% endblock %}
