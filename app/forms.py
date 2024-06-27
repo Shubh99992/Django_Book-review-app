@@ -1,7 +1,14 @@
-from django import forms
-from .models import Review
+# Assuming you have a forms.py file in your Django app
 
-class ReviewForm(forms.ModelForm):
-    class Meta:
-        model = Review
-        fields = ['rating', 'review_text']
+from django import forms
+
+class ReviewForm(forms.Form):
+    review_text = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}))
+    RATING_CHOICES = [
+        (5, '★★★★★'),
+        (4, '★★★★'),
+        (3, '★★★'),
+        (2, '★★'),
+        (1, '★'),
+    ]
+    rating = forms.ChoiceField(choices=RATING_CHOICES, widget=forms.RadioSelect(attrs={'class': 'rating-radio'}))
