@@ -5,6 +5,7 @@ class Book(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=100)
     year = models.CharField(max_length=40, default='Not Available Data')
+    genre = models.CharField(max_length=100, default="Philoshopy")
     details = models.TextField(max_length=1000, default='No details available')
     cover = models.ImageField(upload_to='covers/', blank=True, null=True)
 
