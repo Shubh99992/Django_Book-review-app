@@ -1,17 +1,33 @@
-<!-- templates/base.html -->
+{% load static %}
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script defer src="{% static 'script.js' %}"></script>
 </head>
-
 <body>
-  <main>
-    {% block content %}
-    {% endblock %}
-  </main>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="{% url 'home' %}" class="brand">BookReview</a>
+            <button class="hamburger" id="hamburger">
+                ☰
+            </button>
+        </div>
+        <ul class="nav-links">
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="content" id="content">
+        {% block content %}{% endblock %}
+    </div>
 </body>
-
 </html>
