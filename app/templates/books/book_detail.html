@@ -10,6 +10,11 @@
                 <p><strong>Genre:</strong> {{ book.genre }}</p>
                 <p><strong>Year:</strong> {{ book.year }}</p>
                 <p><strong>Description:</strong> {{ book.details }}</p>
+                {% if average_rating %}
+                <p><strong>Reviews Written:</strong> Average Rating: {{ average_rating }}</p>
+                {% else %}
+                <p><strong>Reviews Written:</strong> No reviews yet.</p>
+                {% endif %}
             </div>
         </div>
 
@@ -19,7 +24,7 @@
             {% for review in reviews %}
             <div class="review">
                 <p><strong>{{ review.user.username }}</strong>: {{ review.review_text }}</p>
-                <p><strong>Rating:</strong> {{ review.rating }}</p>
+                <p><strong>Rating:</strong> <span class="star-rating" data-rating="{{ review.rating }}"></span></p>
                 <hr>
             </div>
             {% empty %}
@@ -32,16 +37,41 @@
             <h2>Add a Review</h2>
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <div class="rating">
-                    <label><input type="radio" name="rating" value="5"><span class="rating-btn">5</span></label>
-                    <label><input type="radio" name="rating" value="4"><span class="rating-btn">4</span></label>
-                    <label><input type="radio" name="rating" value="3"><span class="rating-btn">3</span></label>
-                    <label><input type="radio" name="rating" value="2"><span class="rating-btn">2</span></label>
-                    <label><input type="radio" name="rating" value="1"><span class="rating-btn">1</span></label>
+                {{ form.non_field_errors }}
+                <div class="form-group">
+                    <label for="{{ form.rating.id_for_label }}">Rating:</label>
+                    {{ form.rating }}
+                </div>
+                {{ form.review_text.errors }}
+                <div class="form-group">
+                    <label for="{{ form.review_text.id_for_label }}">Review Text:</label>
+                    {{ form.review_text }}
                 </div>
                 <button type="submit" class="submit-btn">Submit Review</button>
             </form>
         </div>
     </div>
+
+    <!-- JavaScript to convert integer ratings to star ratings -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const starRatingElements = document.querySelectorAll('.star-rating');
+            starRatingElements.forEach(element => {
+                const rating = parseInt(element.dataset.rating);
+                element.innerHTML = getStarRatingHTML(rating);
+            });
+
+            function getStarRatingHTML(rating) {
+                let starsHTML = '';
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= rating) {
+                        starsHTML += '★'; // Full star
+                    } else {
+                        starsHTML += '☆'; // Empty star
+                    }
+                }
+                return starsHTML;
+            }
+        });
+    </script>
 {% endblock %}
