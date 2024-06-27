@@ -69,7 +69,7 @@ body {
 .review-link {
     display: block;
     text-align: center;
-    padding: 8px 0;
+    padding: 8px;
     background-color: #007BFF;
     color: white;
     text-decoration: none;
@@ -159,7 +159,9 @@ body {
 .sidebar.collapsed .brand {
     display: none;
 }
-
+.sidebar.collapsed .review-button{
+    display: none;
+}
 .sidebar .nav-links {
     list-style: none;
     padding: 0;
@@ -182,9 +184,11 @@ body {
     text-overflow: ellipsis;
 }
 
+
 .sidebar.collapsed .nav-links a {
     display: none;
 }
+
 
 .sidebar .nav-links a:hover {
     background-color: #444;
@@ -234,7 +238,7 @@ body {
 
 .review-button {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #af594c;
     color: white;
     border: none;
     border-radius: 5px;
@@ -242,14 +246,13 @@ body {
 }
 
 .review-button:hover {
-    background-color: #45a049;
+    background-color: #a04545;
 }
 
 .separator {
     margin: 20px 0;
     border: 1px solid #ccc;
 }
-
 /* Book details page styles */
 
 .book-details {
@@ -263,7 +266,7 @@ body {
     margin-bottom: 10px;
 }
 
-.book-info {
+.book-details .book-info {
     display: flex;
     align-items: flex-start;
     margin-bottom: 20px;
@@ -300,27 +303,8 @@ body {
     margin-top: 20px;
 }
 
-.rating {
-    margin-bottom: 10px;
-}
-
-.rating label {
-    margin-right: 10px;
-}
-
-.rating-btn {
-    display: inline-block;
-    padding: 8px 12px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.rating-btn:hover {
-    background-color: #0056b3;
+.form-group {
+    margin-bottom: 15px;
 }
 
 .submit-btn {

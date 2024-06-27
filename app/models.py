@@ -15,6 +15,8 @@ class Book(models.Model):
 class User(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     favorite_books = models.ManyToManyField(Book, related_name='favorited_by')
+    recent_reads = models.ManyToManyField(Book, related_name='readed_recent_by')
+
     def __str__(self):
         return self.user.username
 

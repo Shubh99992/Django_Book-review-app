@@ -3,10 +3,50 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+{% if user.is_authenticated %}
+<div class="hero-section">
+    <h1>Welcome {{user.username}}</h1>
+    <p>Your go-to place for book reviews and recommendations</p>
+    <!-- Will do -->
+    <!-- <h2>Favorite Books</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ favorite_books_form.as_p }}
+        <button type="submit" name="favorite_books_form">Update Favorite Books</button>
+    </form>
+    <h2>Recent Reads</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ recent_reads_form.as_p }}
+        <button type="submit" name="recent_reads_form">Update Recent Reads</button>
+    </form> -->
+
+    <h3>Current Favorites:</h3>
+    <ul>
+        {% for book in favorite_books %}
+            <li>{{ book.title }}</li>
+        {% empty %}
+            <li>No favorite books selected yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Recent Reads:</h3>
+    <ul>
+        {% for book in recent_reads %}
+            <li>{{ book.title }}</li>
+        {% empty %}
+            <li>No recent reads recorded yet.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% else %}
 <div class="hero-section">
     <h1>Welcome to BookFlick</h1>
     <p>Your go-to place for book reviews and recommendations</p>
 </div>
+{% endif %}
+
 <div class="books-container">
     {% for object in object_list %}
     <div class="book-item">
