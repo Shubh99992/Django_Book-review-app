@@ -4,31 +4,24 @@
 
 {% block content %}
 <div class="hero-section">
-    <h1>Welcome to BookReview</h1>
+    <h1>Welcome to BookFlick</h1>
     <p>Your go-to place for book reviews and recommendations</p>
 </div>
-<div class="user-info">
-    {% if user.is_authenticated %}
-    <p class="greeting">Hi {{ user.username }}!</p>
-    <p class="books-heading">Here are your Books to Review:</p>
-    <
-    {% else %}
-    <p class="login-message">You are not logged in</p>
-    <ul class="books-list"> 
-        {% for object in object_list %} 
-        <li class="book-item">
+<div class="books-container">
+    {% for object in object_list %}
+    <div class="book-item">
+      <div class="book-cover">
+        <img src="{{ object.cover }}" alt="{{ object.title }}" class="cover-image">
+    </div>
+        <div class="book-info">
             <h3>{{ object.title }}</h3>
             <p>{{ object.details }}</p>
-            <img src="{{ object.cover }}" class="book-cover" alt="">
-            <a href="{% url 'book_details' object.id %}">
-                <button class="review-button">Review</button>
-            </a>
-            <hr class="separator"/>
-        </li>
-        {% empty %} 
-        <li>No Books yet.</li> 
-        {% endfor %} 
-    </ul>
-    {% endif %}
+            <a href="{% url 'book_details' object.id %}" class="review-link">Review</a>
+        </div>
+        
+    </div>
+    {% empty %}
+    <p>No Books yet.</p>
+    {% endfor %}
 </div>
 {% endblock %}
