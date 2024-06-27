@@ -12,13 +12,14 @@
 <body>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <a href="{% url 'home' %}" class="brand">BookReview</a>
+            <a href="{% url 'home' %}" class="brand">BookFlick</a>
             <button class="hamburger" id="hamburger">
                 ☰
             </button>
         </div>
         <ul class="nav-links">
             {% if user.is_authenticated %}
+            <li><a href="{% url 'home'}">Hello, {{user.username}}</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
             {% else %}
             <li><a href="{% url 'login' %}">Log In</a></li>
