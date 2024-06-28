@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Community{% endblock %}
+
+{% block content %}
+  <h1 class="community-heading">Community</h1>
+  
+  <div class="card-container">
+    {% for user in users %}
+      <div class="user-card">
+        <a href="{% url 'user_profile' user.user.username %}" class="user-link">{{ user.user.username }}</a>        
+        {% if request.user != user %}
+          {% if request.user.is_authenticated %}
+            {% if user in request.user.following.all %}
+              <form action="{% url 'unfollow_user' user.user.username %}" method="post" class="unfollow-form">
+                {% csrf_token %}
+                <button type="submit" class="unfollow-button">Unfollow</button>
+              </form>
+            {% else %}
+              <form action="{% url 'follow_user' user.user.username %}" method="post" class="follow-form">
+                {% csrf_token %}
+                <button type="submit" class="follow-button">Follow</button>
+              </form>
+            {% endif %}
+          {% else %}
+            <p class="login-prompt"><a href="{% url 'login' %}" class="login-link">Log in</a> to follow</p>
+          {% endif %}
+        {% endif %}
+      </div>
+    {% empty %}
+      <div class="no-users">No users found.</div>
+    {% endfor %}
+  </div>
+{% endblock %}

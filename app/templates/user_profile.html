@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}{{ profile.user.username }}'s Profile{% endblock %}
+
+{% block content %}
+  <div class="profile-header">
+    <h1 class="profile-username">{{ profile.user.username }}</h1>
+    
+    <div class="profile-section">
+      <h2 class="profile-section-title">Favorite Books</h2>
+      <ul class="books-list">
+        {% for book in profile.favorite_books.all %}
+          <li class="profile-book-item">{{ book.title }}</li>
+        {% empty %}
+          <li class="profile-book-item">No favorite books selected yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+    
+    <div class="profile-section">
+      <h2 class="profile-section-title">Recent Reads</h2>
+      <ul class="books-list">
+        {% for book in profile.recent_reads.all %}
+          <li class="profile-book-item">{{ book.title }}</li>
+        {% empty %}
+          <li class="profile-book-item">No recent reads recorded yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+    
+    {% if request.user != profile.user %}
+      <div class="profile-action">
+        {% if request.user.is_authenticated %}
+          {% if is_following %}
+            <form action="{% url 'unfollow_user' profile.user.username %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="follow-btn">Unfollow {{ profile.user.username }}</button>
+            </form>
+          {% else %}
+            <form action="{% url 'follow_user' profile.user.username %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="follow-btn">Follow {{ profile.user.username }}</button>
+            </form>
+          {% endif %}
+        {% else %}
+          <p><a href="{% url 'login' %}" class="login-link">Log in</a> to follow {{ profile.user.username }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+    
+    <div class="profile-section">
+      <h2 class="profile-section-title">Followers</h2>
+      <ul class="books-list">
+        {% for follower in profile.followers.all %}
+          <li class="profile-follow-item">{{ follower.user.username }}</li>
+        {% empty %}
+          <li class="profile-follow-item">No followers yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+    
+    <div class="profile-section">
+      <h2 class="profile-section-title">Following</h2>
+      <ul class="books-list">
+        {% for followed_user in profile.following.all %}
+          <li class="profile-follow-item">{{ followed_user.user.username }}</li>
+        {% empty %}
+          <li class="profile-follow-item">Not following anyone yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}
