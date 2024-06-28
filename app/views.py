@@ -1,5 +1,6 @@
 # accounts/views.py
 from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, FormView
@@ -16,11 +17,48 @@ class ExploreBooksView(ListView):
     context_object_name = 'books'
 
 
+class UserProfileView(DetailView):
+    model = User
+    template_name = 'user_profile.html'
+    context_object_name = 'profile'
+    slug_field = 'user__username'
+    slug_url_kwarg = 'username'
+
+    def get_object(self, queryset=None):
+        username = self.kwargs.get(self.slug_url_kwarg)
+        return get_object_or_404(self.model, user__username=username)
+
+    def get_context_data(self, **kwargs):
+        username = self.kwargs.get(self.slug_url_kwarg)
+        muser = get_object_or_404(self.model, user__username=username)
+        context = super().get_context_data(**kwargs)
+        context['is_following'] = self.request.user.is_authenticated and muser.is_following(user=str(self.request.user.username))
+        return context
+
+def follow_user(request, username):
+    user_to_follow = get_object_or_404(User, user__username=username)
+    if request.user.is_authenticated:
+        user_that_follows = get_object_or_404(User, user__username=request.user.username)
+        user_that_follows.follow(user_to_follow)
+    return redirect('user_profile', username=username)
+
+def unfollow_user(request, username):
+    user_to_follow = get_object_or_404(User, user__username=username)
+    if request.user.is_authenticated:
+        user_that_follows = get_object_or_404(User, user__username=request.user.username)
+        user_that_follows.unfollow(user_to_follow)
+    return redirect('user_profile', username=username)
+
+class CommunityView(ListView):
+    model = User
+    template_name = 'community.html'
+    context_object_name = 'users'
+
 class SignUpView(CreateView):
     model = mainUser
     form_class = CustomUserCreationForm
     template_name = 'registration/signup.html'
-    success_url = '/'
+    success_url = '/accounts/login'
 
     def form_valid(self, form):
         # Additional logic if needed
