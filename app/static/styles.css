@@ -178,6 +178,8 @@ body {
     text-overflow: ellipsis;
 }
 
+
+
 .sidebar.collapsed .nav-links a {
     display: none;
 }
@@ -442,4 +444,19 @@ hr {
 
 .collapsible-content li {
     margin: 5px 0;
+}
+/* Anchor tag styles */
+.collapsible-content a {
+    color: rgb(159, 146, 90);
+    text-decoration: none;
+    padding: 5px 0;
+    display: block;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.collapsible-content a:hover {
+    color: white;
+    background-color: rgb(85, 78, 48);
+    border-radius: 5px;
+    padding-left: 5px;
 }
