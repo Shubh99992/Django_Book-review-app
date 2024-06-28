@@ -16,9 +16,20 @@ class User(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     favorite_books = models.ManyToManyField(Book, related_name='favorited_by')
     recent_reads = models.ManyToManyField(Book, related_name='readed_recent_by')
+    followers = models.ManyToManyField('self', symmetrical=False, related_name='following')
 
     def __str__(self):
         return self.user.username
+
+    def follow(self, user):
+        self.following.add(user)
+
+    def unfollow(self, user):
+        self.following.remove(user)
+            
+    def is_following(self, user):
+        query = self.followers.all()
+        return query.filter(user__username=user)
 
 class Review(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reviews')
@@ -28,3 +39,4 @@ class Review(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.book.title}"
+    
