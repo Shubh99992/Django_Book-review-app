@@ -6,8 +6,6 @@ body {
     display: flex;
 }
 
-
-/* Hero section styles */
 .hero-section {
     background: #007BFF;
     color: white;
@@ -26,15 +24,12 @@ body {
     margin-top: 10px;
 }
 
-/* Container for books */
 .books-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    
 }
 
-/* Individual book item styles */
 .book-item {
     background-color: #fff;
     border-radius: 5px;
@@ -50,7 +45,6 @@ body {
     transform: translateY(-5px);
 }
 
-/* Book info styles */
 .book-info {
     padding: 10px;
 }
@@ -81,7 +75,6 @@ body {
     background-color: #0056b3;
 }
 
-/* Book cover styles */
 .book-cover {
     position: relative;
     overflow: hidden;
@@ -114,7 +107,6 @@ body {
     opacity: 1;
 }
 
-/* Responsive layout adjustments */
 @media (max-width: 768px) {
     .book-item {
         width: calc(50% - 20px);
@@ -159,7 +151,8 @@ body {
 .sidebar.collapsed .brand {
     display: none;
 }
-.sidebar.collapsed .review-button{
+
+.sidebar.collapsed .review-button {
     display: none;
 }
 
@@ -185,18 +178,18 @@ body {
     text-overflow: ellipsis;
 }
 
-
 .sidebar.collapsed .nav-links a {
     display: none;
 }
 
-
 .sidebar .nav-links a:hover {
     background-color: #444;
 }
-.sidebar.collapsed .nav-links{
+
+.sidebar.collapsed .nav-links {
     display: none;
 }
+
 .hamburger {
     background: none;
     border: none;
@@ -215,7 +208,6 @@ body {
 .content.collapsed {
     margin-left: 60px;
 }
-
 
 .user-info {
     text-align: center;
@@ -256,7 +248,6 @@ body {
     margin: 20px 0;
     border: 1px solid #ccc;
 }
-/* Book details page styles */
 
 .book-details {
     max-width: 800px;
@@ -328,4 +319,75 @@ hr {
     border: none;
     border-top: 1px solid #ccc;
     margin: 10px 0;
+}
+
+/* Styles for the forms in the sidebar */
+.update-form {
+    margin-bottom: 20px;
+}
+
+.update-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.update-form select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.update-form button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.update-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Styles for the current favorites and recent reads sections */
+.current-favorites,
+.recent-reads {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    width: calc(50% - 40px);
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.current-favorites:hover,
+.recent-reads:hover {
+    transform: translateY(-5px);
+}
+
+.current-favorites h3,
+.recent-reads h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.current-favorites ul,
+.recent-reads ul {
+    list-style: none;
+    padding: 0;
+}
+
+.current-favorites li,
+.recent-reads li {
+    font-size: 16px;
+    margin-bottom: 5px;
 }

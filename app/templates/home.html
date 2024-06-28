@@ -3,52 +3,59 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
 <div class="hero-section">
-    <h1>Welcome {{user.username}}</h1>
+    {% if user.is_authenticated %}
+    <h1>Welcome, {{ user.username }}!</h1>
     <p>Your go-to place for book reviews and recommendations</p>
-
-    <h3>Current Favorites:</h3>
-    <ul>
-        {% for book in favorite_books %}
-            <li>{{ book.title }}</li>
-        {% empty %}
-            <li>No favorite books selected yet.</li>
-        {% endfor %}
-    </ul>
-
-    <h3>Recent Reads:</h3>
-    <ul>
-        {% for book in recent_reads %}
-            <li>{{ book.title }}</li>
-        {% empty %}
-            <li>No recent reads recorded yet.</li>
-        {% endfor %}
-    </ul>
-</div>
-
-{% else %}
-<div class="hero-section">
+    {% else %}
     <h1>Welcome to BookFlick</h1>
     <p>Your go-to place for book reviews and recommendations</p>
+    {% endif %}
 </div>
-{% endif %}
 
-<div class="books-container">
-    {% for object in object_list %}
-    <div class="book-item">
-      <div class="book-cover">
-        <img src="{{ object.cover }}" alt="{{ object.title }}" class="cover-image">
+<div class="content">
+    {% if user.is_authenticated %}
+    <div class="current-favorites">
+        <h3>Current Favorites:</h3>
+        <ul>
+            {% for book in favorite_books %}
+            <img src="{{ book.cover }}" width="100px" alt="">
+            <li>{{ book.title }}</li>
+
+            {% empty %}
+            <li>No favorite books selected yet.</li>
+            {% endfor %}
+        </ul>
     </div>
-        <div class="book-info">
-            <h3>{{ object.title }}</h3>
-            <p>{{ object.details }}</p>
-            <a href="{% url 'book_details' object.id %}" class="review-link">Review</a>
+
+    <div class="recent-reads">
+        <h3>Recent Reads:</h3>
+        <ul>
+            {% for book in recent_reads %}
+            <img src="{{ book.cover }}" width="100px" alt="">
+            <li>{{ book.title }}</li>
+            {% empty %}
+            <li>No recent reads recorded yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <div class="books-container">
+        {% for book in books %}
+        <div class="book-item">
+            <div class="book-cover">
+                <img src="{{ book.cover }}" alt="{{ book.title }}" class="cover-image">
+            </div>
+            <div class="book-info">
+                <h3>{{ book.title }}</h3>
+                <p>{{ book.details }}</p>
+                <a href="{% url 'book_details' book.id %}" class="review-link">Review</a>
+            </div>
         </div>
-        
+        {% empty %}
+        <p>No Books yet.</p>
+        {% endfor %}
     </div>
-    {% empty %}
-    <p>No Books yet.</p>
-    {% endfor %}
 </div>
 {% endblock %}
