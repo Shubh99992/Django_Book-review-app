@@ -206,12 +206,14 @@ body {
     flex: 1;
     transition: margin-left 0.3s ease;
 }
-.content-books{
+
+.content-books {
     margin-left: 10px;
     padding: 20px;
     flex: 1;
     transition: margin-left 0.3s ease;
 }
+
 .content.collapsed {
     margin-left: 60px;
 }
@@ -446,6 +448,7 @@ hr {
 .collapsible-content li {
     margin: 5px 0;
 }
+
 /* Anchor tag styles */
 .collapsible-content a {
     color: rgb(159, 146, 90);
@@ -460,4 +463,151 @@ hr {
     background-color: rgb(85, 78, 48);
     border-radius: 5px;
     padding-left: 5px;
+}
+
+/* style.css */
+
+/* Community page styles */
+
+.community-heading {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.user-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-link {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007BFF;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.user-link:hover {
+    text-decoration: underline;
+}
+
+.follow-form,
+.unfollow-form {
+    margin-top: 10px;
+}
+
+.follow-button,
+.unfollow-button {
+    padding: 8px 12px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.follow-button:hover,
+.unfollow-button:hover {
+    background-color: #0056b3;
+}
+
+.login-prompt {
+    margin-top: 10px;
+    color: #666;
+}
+
+.login-link {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+.no-users {
+    padding: 10px;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+/* styles.css */
+
+/* Profile header */
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.follow-btn,
+.unfollow-btn {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.follow-btn:hover,
+.unfollow-btn:hover {
+    background-color: #0056b3;
+}
+
+.login-link {
+    color: #007BFF;
+}
+
+/* Profile sections */
+.profile-section {
+    margin-bottom: 30px;
+}
+
+.profile-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.books-list,
+.followers-list,
+.following-list {
+    list-style: none;
+    padding: 0;
+}
+
+.books-list li,
+.followers-list li,
+.following-list li {
+    margin-bottom: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .profile-header h1 {
+        font-size: 28px;
+    }
 }
