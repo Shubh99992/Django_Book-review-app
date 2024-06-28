@@ -204,7 +204,12 @@ body {
     flex: 1;
     transition: margin-left 0.3s ease;
 }
-
+.content-books{
+    margin-left: 10px;
+    padding: 20px;
+    flex: 1;
+    transition: margin-left 0.3s ease;
+}
 .content.collapsed {
     margin-left: 60px;
 }
@@ -390,4 +395,51 @@ hr {
 .recent-reads li {
     font-size: 16px;
     margin-bottom: 5px;
+}
+
+
+/* Collapasable section */
+.collapsible {
+    margin: 20px 0;
+}
+
+.collapsible-header {
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+.collapsible-header:hover {
+    background-color: #0056b3;
+}
+
+.collapsible-content {
+    display: none;
+    padding: 10px;
+    border: 1px solid #007BFF;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    background-color: #f4f4f4;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.collapsible-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.collapsible-content li {
+    margin: 5px 0;
 }
