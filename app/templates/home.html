@@ -13,31 +13,33 @@
     {% endif %}
 </div>
 
-<div class="content">
+<div class="content-books">
     {% if user.is_authenticated %}
-    <div class="current-favorites">
-        <h3>Current Favorites:</h3>
-        <ul>
-            {% for book in favorite_books %}
-            <img src="{{ book.cover }}" width="100px" alt="">
-            <li>{{ book.title }}</li>
-
-            {% empty %}
-            <li>No favorite books selected yet.</li>
-            {% endfor %}
-        </ul>
+    <div class="collapsible">
+        <button class="collapsible-header">Current Favorites</button>
+        <div class="collapsible-content">
+            <ul>
+                {% for book in favorite_books %}
+                <li><a href="{% url 'book_details' book.id %}">{{ book.title }}</a></li>
+                {% empty %}
+                <li>No favorite books selected yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 
-    <div class="recent-reads">
-        <h3>Recent Reads:</h3>
-        <ul>
-            {% for book in recent_reads %}
-            <img src="{{ book.cover }}" width="100px" alt="">
-            <li>{{ book.title }}</li>
-            {% empty %}
-            <li>No recent reads recorded yet.</li>
-            {% endfor %}
-        </ul>
+    <div class="collapsible">
+        <button class="collapsible-header">Recent Reads</button>
+        <div class="collapsible-content">
+            <ul>
+                {% for book in recent_reads %}
+                <li><a href="{% url 'book_details' book.id %}">{{ book.title }}</a></li>
+
+                {% empty %}
+                <li>No recent reads recorded yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
     {% endif %}
 
