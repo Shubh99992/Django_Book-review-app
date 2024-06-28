@@ -47,7 +47,11 @@
                     <label for="{{ form.review_text.id_for_label }}">Review Text:</label>
                     {{ form.review_text }}
                 </div>
+                {% if user.is_authenticated %}
                 <button type="submit" class="submit-btn">Submit Review</button>
+                {% else %}
+                <a href="{% url 'login' %}" style="text-decoration: none;" class="submit-btn">Submit Review</a>
+                {% endif %}
             </form>
         </div>
     </div>

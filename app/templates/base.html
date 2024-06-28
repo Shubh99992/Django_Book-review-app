@@ -16,16 +16,18 @@
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <a href="{% url 'home' %}" class="brand">BookFlick</a>
+            
             <button class="hamburger" id="hamburger">☰</button>
         </div>
         <ul class="nav-links">
+            
             {% if user.is_authenticated %}
             <li><a href="{% url 'home' %}">Hello, {{ user.username }}</a></li>
-            <form action="{% url 'logout' %}" method="post">
+            <li><form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
                 <button class="review-button" type="submit">Log Out</button>
-            </form>
-
+            </form></li>
+            {% if request.path == '/' %}
             <!-- Favorite Books Form -->
             <h3>Favorite Books</h3>
             <form method="post" class="update-form" action="{% url 'home' %}">
@@ -41,11 +43,12 @@
                 {{ recent_reads_form.as_p }}
                 <button type="submit" name="recent_reads_form">Update</button>
             </form>
-
+            {% endif %}
             {% else %}
             <li><a href="{% url 'login' %}">Log In</a></li>
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
             {% endif %}
+            <li><a href="{% url 'explore_books' %}">Explore Books</a></li>
         </ul>
     </div>
     <div class="content" id="content">

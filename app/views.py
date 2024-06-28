@@ -5,9 +5,16 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, FormView
 from .models import Book, Review, User
 from .forms import CustomUserCreationForm, FavoriteBooksForm, RecentReadsForm, ReviewForm
-from django.db.models import Avg
+from django.db.models import Avg, Count
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User as mainUser
+
+
+class ExploreBooksView(ListView):
+    model = Book
+    template_name = 'books/explore_books.html'
+    context_object_name = 'books'
+
 
 class SignUpView(CreateView):
     model = mainUser
@@ -24,8 +31,14 @@ class HomeView(ListView):
     template_name = "home.html"
     context_object_name = "books"
 
+    def get_queryset(self):
+        # Fetch the top 5 books with the most reviews
+        top_books = Book.objects.annotate(num_reviews=Count('reviews')).order_by('-num_reviews')[:5]
+        return top_books
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['most_reviewed_books'] = self.get_queryset()
         if self.request.user.is_authenticated:
             custom_user, created = User.objects.get_or_create(user=self.request.user)
             context['favorite_books_form'] = FavoriteBooksForm(instance=custom_user)
@@ -33,6 +46,9 @@ class HomeView(ListView):
             context['favorite_books'] = custom_user.favorite_books.all()
             context['recent_reads'] = custom_user.recent_reads.all()
         return context
+
+    
+
 
     def post(self, request, *args, **kwargs):
         if request.user.is_authenticated:

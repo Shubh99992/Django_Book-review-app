@@ -42,9 +42,10 @@
         </div>
     </div>
     {% endif %}
-
+    <h3>Top Picks:</h3>
     <div class="books-container">
-        {% for book in books %}
+        
+        {% for book in most_reviewed_books %}
         <div class="book-item">
             <div class="book-cover">
                 <img src="{{ book.cover }}" alt="{{ book.title }}" class="cover-image">

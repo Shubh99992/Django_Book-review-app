@@ -239,7 +239,8 @@ body {
 }
 
 .review-button {
-    padding: 10px 20px;
+    padding: 10px;
+    margin: 0 10px;
     background-color: #af594c;
     color: white;
     border: none;

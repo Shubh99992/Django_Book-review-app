@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Explore Books{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <h1>Explore Books</h1>
+    <p>Discover a wide range of books</p>
+</div>
+
+<div class="books-container">
+    {% for book in books %}
+    <div class="book-item">
+        <div class="book-cover">
+            <img src="/{{ book.cover }}" alt="{{ book.title }}" class="cover-image">
+        </div>
+        <div class="book-info">
+            <h3>{{ book.title }}</h3>
+            <p>{{ book.details }}</p>
+            <a href="{% url 'book_details' book.id %}" class="review-link">Review</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>No Books found.</p>
+    {% endfor %}
+</div>
+{% endblock %}
