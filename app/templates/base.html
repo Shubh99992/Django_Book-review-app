@@ -28,7 +28,7 @@
 
             <!-- Favorite Books Form -->
             <h3>Favorite Books</h3>
-            <form method="post" action="{% url 'home' %}">
+            <form method="post" class="update-form" action="{% url 'home' %}">
                 {% csrf_token %}
                 {{ favorite_books_form.as_p }}
                 <button type="submit" name="favorite_books_form">Update</button>
@@ -36,7 +36,7 @@
 
             <!-- Recent Reads Form -->
             <h3>Recent Reads</h3>
-            <form method="post" action="{% url 'home' %}">
+            <form method="post" class="update-form" action="{% url 'home' %}">
                 {% csrf_token %}
                 {{ recent_reads_form.as_p }}
                 <button type="submit" name="recent_reads_form">Update</button>
