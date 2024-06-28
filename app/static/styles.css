@@ -162,6 +162,7 @@ body {
 .sidebar.collapsed .review-button{
     display: none;
 }
+
 .sidebar .nav-links {
     list-style: none;
     padding: 0;
@@ -193,7 +194,9 @@ body {
 .sidebar .nav-links a:hover {
     background-color: #444;
 }
-
+.sidebar.collapsed .nav-links{
+    display: none;
+}
 .hamburger {
     background: none;
     border: none;
