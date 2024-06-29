@@ -135,3 +135,18 @@ class BookDetailView(DetailView):
         else:
             # If the form is not valid, re-render the page with the form and any errors
             return self.render_to_response(self.get_context_data(form=form))
+        
+class FollowingView(ListView):
+    model = User
+    template_name = 'community.html'
+    slug_url_kwarg = 'username'
+
+
+
+    def get_context_data(self, **kwargs):
+        username = self.kwargs.get(self.slug_url_kwarg)
+        muser = get_object_or_404(self.model, user__username=username)
+        context = super().get_context_data(**kwargs)
+        context['users'] = muser.following.all()
+        context['is_following'] = True
+        return context

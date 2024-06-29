@@ -23,6 +23,7 @@
             
             {% if user.is_authenticated %}
             <li><a href="{% url 'home' %}">Hello, {{ user.username }}</a></li>
+            <li><a href="{% url 'friends' user.username %}">Your Friends</a></li>
             <li><form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
                 <button class="review-button" type="submit">Log Out</button>

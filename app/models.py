@@ -29,7 +29,7 @@ class User(models.Model):
             
     def is_following(self, user):
         query = self.followers.all()
-        return query.filter(user__username=user)
+        return query.filter(user__username=user).exists()
 
 class Review(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reviews')
